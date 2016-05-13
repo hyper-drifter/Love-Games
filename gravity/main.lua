@@ -3,7 +3,8 @@ function love.load()
       background = love.graphics.newImage('starBackground.png')
       xMid = love.graphics.getWidth()/2
       yMid = love.graphics.getHeight()/2
-
+      
+      --Initial parameters of solar system objects
       earth = {m = 10^4, x0 = xMid, y0 = yMid-175, vX=-50, vY=0, trajectory={}}
       mars = {m = 10^4, x0 = xMid+175, y0 = yMid, vX=0, vY= -50, trajectory={}}
       mercury =  {m = 10^4, x0 = xMid-175, y0 = yMid, vX=0, vY= 50, trajectory={}}

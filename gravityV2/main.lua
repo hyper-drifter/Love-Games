@@ -1,5 +1,5 @@
 function love.load()
-      love.window.setFullscreen(true)
+      love.window.setMode(1366, 768, {borderless=true})
       background = love.graphics.newImage('starBackground.png')
       xMid = love.graphics.getWidth()/2
       yMid = love.graphics.getHeight()/2
@@ -10,7 +10,7 @@ function love.load()
             local objects = {}
 
             for i=1, numOfObjs do
-                  local newPlanet = {m = 10^4, x0 = rng:random(0,love.graphics.getWidth()), y0 = rng:random(0,love.graphics.getHeight()), vX = rng:random(-40,40), vY = rng:random(-40,40)}
+                  local newPlanet = {m = 10^4, x0 = rng:random(0,love.graphics.getWidth()), y0 = rng:random(0,love.graphics.getHeight()), vX = rng:random(-50,50), vY = rng:random(-50,50)}
                   table.insert(objects, newPlanet)
             end
 

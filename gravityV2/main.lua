@@ -1,3 +1,9 @@
+--[[
+     Author: Taylor Grubbs
+     Date: Sometime in Summer 2016
+
+     Description: This version starts with the objects in random positions and velocities. Change the numberOfObjects variable to create more or less objects. Most objects collide with others or the sun and get sent out of the window range. Only a few stick around after a while
+]]--
 function love.load()
       love.window.setMode(1366, 768, {borderless=true})
       background = love.graphics.newImage('starBackground.png')

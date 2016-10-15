@@ -7,8 +7,8 @@
      Controls: The user can adjust the particles' speed/kinetic energy by pressing the up and down arrow keys. Press escape to end the simulation.
 --]]
 function love.load()
-     --sets to full screen and finds screen center
-     love.window.setFullscreen(true)
+     --sets screen resolution and finds screen center
+     love.window.setMode(1366, 768, {borderless=true})
      xMid = love.graphics.getWidth()/2
      yMid = love.graphics.getHeight()/2
 

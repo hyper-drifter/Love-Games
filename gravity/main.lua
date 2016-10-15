@@ -3,7 +3,7 @@
      Date: Sometime in Spring 2016
 
      Description: This game is really a 2-D gravity-like simulation that uses basic Euler-method integration to calculate the trajectories of multiple bodies in a fictional solar system. One can easily alter the initial positions and velocities of the objects by changing their initial values in the load function.
-     In addition the player can move the 'sun' with the arrow keys. 
+     In addition the player can move the 'sun' with the arrow keys.
 ]]--
 
 function love.load()
@@ -32,13 +32,14 @@ function love.load()
       table.insert(venus.trajectory, venus.y0)
 
       g = 1
+      start = false
 end
 
 function love.update(dt)
 
       function userControls() --allows user to control sun and exit program
-            if love.keyboard.isDown('escape') then
-                  love.event.quit(1)
+            if love.keyboard.isDown('space') then
+                  start = true
             end
 
             --allows user to control the sun
@@ -88,33 +89,45 @@ function love.update(dt)
 
       userControls()
       --gravity(sun,objectList)
-      gravity(earth, objectList)
-      gravity(mars, objectList)
-      gravity(mercury, objectList)
-      gravity(venus, objectList)
-
+      if start == true then
+            gravity(earth, objectList)
+            gravity(mars, objectList)
+            gravity(mercury, objectList)
+            gravity(venus, objectList)
+      end
 end
 
 function love.draw()
+      --draws the stuff
       love.graphics.setColor(255,255,255,255)
       love.graphics.draw(background, 0,0)
 
       love.graphics.setColor(0,0,255,255)
       love.graphics.circle('fill', earth.x0, earth.y0, 8, 50)
-      drawTrajectory(earth)
 
       love.graphics.setColor(255,0,0,255)
       love.graphics.circle('fill', mars.x0, mars.y0, 8, 50)
-      drawTrajectory(mars)
 
       love.graphics.setColor(186,85,211,255)
       love.graphics.circle('fill', mercury.x0, mercury.y0, 8, 50)
-      drawTrajectory(mercury)
 
       love.graphics.setColor(0,255,0,255)
       love.graphics.circle('fill', venus.x0, venus.y0, 8, 50)
-      drawTrajectory(venus)
 
       love.graphics.setColor(255,201,1,255)
       love.graphics.circle('fill', sun.x0, sun.y0, 20, 50)
+
+      if start == false then
+            love.graphics.print("Press the spacebar to begin", xMid-50, yMid-25)
+      else --draws trajectories
+            love.graphics.setColor(0,0,255,255)
+            drawTrajectory(earth)
+            love.graphics.setColor(255,0,0,255)
+            drawTrajectory(mars)
+            love.graphics.setColor(186,85,211,255)
+            drawTrajectory(mercury)
+            love.graphics.setColor(0,255,0,255)
+            drawTrajectory(venus)
+      end
+
 end

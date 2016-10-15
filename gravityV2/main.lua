@@ -28,13 +28,14 @@ function love.load()
       objectList = createInitialObjects(numberOfObjects)
 
       g = 1
+      start = false
 end
 
 function love.update(dt)
 
       function userControls() --allows user to control sun and exit program
-            if love.keyboard.isDown('escape') then
-                  love.event.quit(1)
+            if love.keyboard.isDown('space') then
+                  start = true
             end
 
             --allows user to control the sun
@@ -76,17 +77,22 @@ function love.update(dt)
 
       userControls()
       --gravity(sun,objectList)
-      for i,v in ipairs(objectList) do
-            if v ~= sun then
-                  gravity(v, objectList)
+      if start == true then
+            for i,v in ipairs(objectList) do
+                  if v ~= sun then
+                        gravity(v, objectList)
+                  end
             end
       end
-
 end
 
 function love.draw()
       love.graphics.setColor(255,255,255,255)
       love.graphics.draw(background, 0,0)
+
+      if start == false then
+            love.graphics.print("Press the spacebar to begin", xMid-75, yMid-40)
+      end
 
       love.graphics.setColor(0,0,255,255)
       for i,v in ipairs(objectList) do

@@ -2,7 +2,7 @@
      Author: Taylor Grubbs
      Date: 10/31/2016 Happy Halloween
 
-     Description: Simulation of 2-D spring force on a ball
+     Description: Simulation of 2-D spring-like force on a ball. 
 ]]--
 
 function love.load()
@@ -13,7 +13,7 @@ function love.load()
      rng = love.math.newRandomGenerator(love.timer.getTime())
 
      --init parameters
-     ball = {mass = 1, springX = 25, springY = 50, x = rng:random(xMid-600, xMid+600), y = 550, vX = 100, vY = 100, traj = {}}
+     ball = {mass = 1, springX = 25, springY = 50, x = 700, y = 550, vX = 100, vY = 100, traj = {}}
 
      --gives initial values to ball's trajectory
      table.insert(ball.traj, ball.x)
@@ -43,9 +43,15 @@ end
 
 function love.draw()
 
+     --draws ball and its trajectory
      love.graphics.setBackgroundColor(255,255,255,255)
      love.graphics.setColor(0,150,255,255)
      love.graphics.circle('fill', ball.x, ball.y, 8, 50)
      love.graphics.line(ball.traj)
+
+     --draws "spring"
+     love.graphics.setColor(255,0,0,255)
+     love.graphics.setLineStyle('rough')
+     love.graphics.line(xMid,yMid, ball.x, ball.y)
 
 end
